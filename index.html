@@ -25,51 +25,44 @@
             background-size: 50px 50px; scroll-behavior: smooth;
         }
 
-        #cursor-glow { position: fixed; top: -400px; left: -400px; width: 400px; height: 400px; background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: -1; }
-
+        /* Header */
         header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-light); z-index: 100; }
         .logo { font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none; }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: #fff; }
         .btn-contact { padding: 0.6rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-light); border-radius: 20px; color: #fff; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .btn-contact:hover { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        .btn-contact:hover { background: #fff; color: #000; }
 
-        section { padding: 150px 10% 80px; position: relative; }
-        .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 4rem; min-height: 80vh; }
-        
-        .hero-name { font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-title { font-size: 1.1rem; color: #fff; margin-bottom: 2rem; padding: 8px 20px; border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 20px; background: rgba(167, 139, 250, 0.05); display: inline-block; }
+        section { padding: 150px 10% 80px; }
+        #home { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
+
+        .hero-name { font-size: clamp(3.5rem, 5vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-desc { color: var(--text-muted); line-height: 1.8; font-size: 1.15rem; max-width: 500px; }
-
         .avatar { width: 340px; height: 340px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-color); box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
 
-        .section-header { font-size: 0.95rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; }
-        .section-title { font-size: 2.8rem; font-weight: 800; margin-bottom: 3rem; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-
-        .info-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; transition: 0.4s; }
-        .info-box:hover { border-color: var(--theme-color); background: var(--theme-glow); transform: translateY(-5px); }
-        .skill-qa { --theme-color: #38bdf8; --theme-glow: rgba(56, 189, 248, 0.05); border-top: 4px solid var(--theme-color); }
-        .skill-tech { --theme-color: #f472b6; --theme-glow: rgba(244, 114, 182, 0.05); border-top: 4px solid var(--theme-color); }
+        /* Skills Bento Grid */
+        .skills-grid-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .info-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; transition: 0.4s; border-top: 4px solid var(--theme-color); }
+        .info-box:hover { transform: translateY(-8px); background: var(--theme-glow); }
+        
+        .skill-qa { --theme-color: #38bdf8; --theme-glow: rgba(56, 189, 248, 0.05); }
+        .skill-tech { --theme-color: #f472b6; --theme-glow: rgba(244, 114, 182, 0.05); }
         
         .info-box h3 { color: var(--theme-color); margin-bottom: 1.5rem; }
-        .skill-list { list-style: none; color: var(--text-muted); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .skill-list { list-style: none; color: var(--text-muted); display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .skill-list li { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
         .skill-list li::before { content: '✦'; color: var(--theme-color); }
 
         .social-pill { padding: 0.8rem 1.8rem; border: 1px solid var(--border-light); border-radius: 50px; color: #fff; text-decoration: none; font-size: 1rem; background: rgba(255,255,255,0.03); display: inline-block; margin-right: 1rem; margin-top: 1rem; }
-        .social-pill:hover { border-color: var(--accent); background: rgba(167, 139, 250, 0.15); }
-
+        
         @media (max-width: 992px) {
-            .hero-container { flex-direction: column; text-align: center; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .skill-list { grid-template-columns: 1fr; }
+            #home { flex-direction: column; text-align: center; }
+            .skills-grid-bento { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div id="cursor-glow"></div>
     <header>
         <a href="#" class="logo">M.Linh</a>
         <ul class="nav-links">
@@ -81,68 +74,55 @@
     </header>
 
     <section id="home">
-        <div class="hero-container">
-            <div>
-                <p class="hero-title">Sinh viên chuyên ngành Kỹ thuật Phần mềm</p>
-                <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
-                <p class="hero-desc">Định hướng QA/QC Tester. Luôn chú trọng tính cẩn thận, tư duy logic và không ngừng học hỏi để tối ưu hóa chất lượng sản phẩm.</p>
-            </div>
-            <img src="mailin.jpg" alt="Mai Linh" class="avatar">
+        <div>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Sinh viên ngành Công nghệ thông tin - Chuyên ngành Kỹ thuật Phần mềm</p>
+            <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
+            <p class="hero-desc">Định hướng QA/QC Tester. Luôn chú trọng tính cẩn thận, tư duy logic và không ngừng học hỏi để tối ưu hóa chất lượng sản phẩm.</p>
         </div>
+        <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
     </section>
 
     <section id="about">
-        <div class="section-header">01 — Về tôi</div>
-        <h2 class="section-title">Hành trình & Góc nhìn</h2>
-        <p style="color: var(--text-muted); line-height: 1.9; font-size: 1.1rem; max-width: 800px;">Chào bạn, mình là Nguyễn Trần Mai Linh. Mình hứng thú với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng. Việc thực hành từ các bài toán thực tế giúp mình hoàn thiện kỹ năng kiểm thử. Ngoài công việc, mình yêu thích bóng chuyền và cầu lông để rèn luyện sự bền bỉ và tinh thần đồng đội.</p>
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Về tôi</h2>
+        <p style="color: var(--text-muted); line-height: 1.9; font-size: 1.1rem; max-width: 800px;">
+            Chào bạn, mình là Nguyễn Trần Mai Linh. Trong quá trình học tập khối ngành Công nghệ thông tin, mình nhận ra bản thân có sự hứng thú đặc biệt với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng sản phẩm. Với mình, việc học hỏi không ngừng từ các bài toán thực tế là cách tốt nhất để hoàn thiện kỹ năng kiểm thử. Ngoài công việc, mình yêu thích bóng chuyền và cầu lông để rèn luyện sự bền bỉ và tinh thần đồng đội.
+        </p>
     </section>
 
     <section id="skills">
-        <h2 class="section-title">Kỹ năng chuyên môn</h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: 4rem;">Kỹ năng</h2>
         <div class="skills-grid-bento">
             <div class="info-box skill-qa">
-                <h3>🎯 Kiểm thử & QA</h3>
+                <h3>🎯 Kỹ năng Kiểm thử (Tester)</h3>
                 <ul class="skill-list">
                     <li>Manual Testing</li>
-                    <li>Test Planning</li>
+                    <li>Software Testing Life Cycle</li>
+                    <li>Test Case Design</li>
                     <li>Bug Tracking</li>
-                    <li>API Testing</li>
-                    <li>Selenium Basics</li>
-                    <li>Postman</li>
-                    <li>JMeter</li>
-                    <li>SQL Query</li>
+                    <li>API Testing (Postman)</li>
+                    <li>Automation Basics</li>
                 </ul>
             </div>
             <div class="info-box skill-tech">
-                <h3>⚙️ Kỹ thuật & Công cụ</h3>
+                <h3>⚙️ Kỹ năng Công nghệ khác</h3>
                 <ul class="skill-list">
-                    <li>Python/Java</li>
-                    <li>Git/GitHub</li>
-                    <li>Docker</li>
+                    <li>Python (ML/AI)</li>
+                    <li>Git / GitHub</li>
+                    <li>Docker / Linux</li>
                     <li>WordPress</li>
-                    <li>Machine Learning</li>
                     <li>MS Project</li>
                     <li>Excel Advanced</li>
-                    <li>Orange Data Mining</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Kết nối với mình</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Rất vui được trao đổi về công nghệ, kiểm thử hoặc làm quen với mọi người!</p>
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Kết nối với mình</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Mình luôn hoan nghênh mọi cơ hội kết nối để chia sẻ kiến thức hoặc giao lưu!</p>
         <a href="mailto:linhnu0407@gmail.com" class="social-pill">✉️ linhnu0407@gmail.com</a>
         <a href="tel:+84968158259" class="social-pill">📞 0968158259</a>
         <a href="https://github.com/linh472212" target="_blank" class="social-pill">💻 GitHub</a>
     </section>
-
-    <script>
-        document.addEventListener('mousemove', (e) => {
-            const cursorGlow = document.getElementById('cursor-glow');
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
-        });
-    </script>
 </body>
 </html>
