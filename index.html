@@ -35,11 +35,11 @@
             scroll-behavior: smooth;
         }
 
-        /* 1. Hiệu ứng trỏ chuột phát sáng */
+        /* Bóng sáng theo trỏ chuột */
         #cursor-glow {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: -400px;
+            left: -400px;
             width: 400px;
             height: 400px;
             background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
@@ -47,7 +47,6 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: -1;
-            transition: width 0.3s, height 0.3s;
         }
 
         /* Header Navigation */
@@ -63,7 +62,6 @@
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-light);
             z-index: 100;
-            transition: all 0.3s ease;
         }
 
         .logo {
@@ -72,7 +70,6 @@
             color: #fff;
             text-decoration: none;
             letter-spacing: -1px;
-            position: relative;
         }
 
         .nav-links {
@@ -94,7 +91,6 @@
             color: #fff;
         }
 
-        /* Gạch chân chạy mượt khi hover menu */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -119,8 +115,6 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-contact:hover {
@@ -136,20 +130,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 10%;
+            padding: 120px 10% 60px;
             position: relative;
-        }
-
-        /* 2. Hiệu ứng cuộn trang (Scroll Reveal) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Hero Section */
@@ -158,14 +140,13 @@
             align-items: center;
             justify-content: space-between;
             gap: 4rem;
-            margin-top: 5rem;
         }
 
         .hero-content {
             flex: 1.2;
         }
 
-        /* 3. Chữ lấp lánh (Shimmer Effect) */
+        /* Chữ lấp lánh đổi màu mượt mà */
         .hero-name {
             font-size: clamp(3.5rem, 6vw, 5.5rem);
             font-weight: 900;
@@ -185,9 +166,7 @@
         }
 
         @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
 
         .hero-title {
@@ -234,7 +213,7 @@
             max-width: 500px;
         }
 
-        /* Avatar Styling */
+        /* Avatar Viền Tròn Tự Động Xoay */
         .hero-image-wrapper {
             flex: 1;
             display: flex;
@@ -245,8 +224,8 @@
 
         .avatar-outer-ring {
             position: absolute;
-            width: 480px;
-            height: 480px;
+            width: 450px;
+            height: 450px;
             border-radius: 50%;
             border: 1px dashed rgba(139, 92, 246, 0.3);
             animation: spin 40s linear infinite;
@@ -254,16 +233,16 @@
 
         .avatar-inner-ring {
             position: absolute;
-            width: 420px;
-            height: 420px;
+            width: 400px;
+            height: 400px;
             border-radius: 50%;
             border: 2px solid rgba(139, 92, 246, 0.4);
             animation: spin 20s linear infinite reverse;
         }
 
         .avatar {
-            width: 360px;
-            height: 360px;
+            width: 340px;
+            height: 340px;
             border-radius: 50%;
             object-fit: cover;
             z-index: 10;
@@ -280,7 +259,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Indicator */
+        /* Indicator nút chuyển cuộn */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -326,7 +305,7 @@
         }
 
         .section-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 3rem;
         }
@@ -348,7 +327,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* 4. Khối Kỹ Năng - Hiệu ứng nổi */
+        /* Khối Kỹ Năng */
         .skill-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-light);
@@ -359,7 +338,6 @@
             overflow: hidden;
         }
 
-        /* Ánh sáng quét qua thẻ khi hover */
         .skill-box::before {
             content: '';
             position: absolute;
@@ -377,7 +355,7 @@
         .skill-box:hover {
             border-color: rgba(167, 139, 250, 0.5);
             background: rgba(167, 139, 250, 0.05);
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(167, 139, 250, 0.1);
         }
 
@@ -385,9 +363,6 @@
             font-size: 1.4rem;
             color: #fff;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .skill-list {
@@ -416,24 +391,24 @@
                 text-align: center;
                 gap: 2rem;
             }
-            #cursor-glow { display: none; } /* Tắt bóng chuột trên đt */
+            #cursor-glow { display: none; }
             .hero-name { font-size: 3rem; }
             .hero-desc { margin: 0 auto; }
             .social-pills { justify-content: center; flex-wrap: wrap; }
             .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-            .avatar-outer-ring { width: 300px; height: 300px; }
-            .avatar-inner-ring { width: 260px; height: 260px; }
-            .avatar { width: 220px; height: 220px; }
+            .avatar-outer-ring { width: 320px; height: 320px; }
+            .avatar-inner-ring { width: 280px; height: 280px; }
+            .avatar { width: 240px; height: 240px; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bóng sáng theo chuột -->
+    <!-- Bóng phát sáng chạy mượt theo chuột -->
     <div id="cursor-glow"></div>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <header>
         <a href="#" class="logo">M.Linh</a>
         <ul class="nav-links">
@@ -447,7 +422,7 @@
     <!-- Hero Section -->
     <section id="home">
         <div class="hero-container">
-            <div class="hero-content reveal">
+            <div class="hero-content">
                 <p class="hero-title">Sinh viên ngành Công nghệ thông tin</p>
                 
                 <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
@@ -463,15 +438,14 @@
                 </p>
             </div>
 
-            <div class="hero-image-wrapper reveal" style="transition-delay: 0.2s;">
+            <div class="hero-image-wrapper">
                 <div class="avatar-outer-ring"></div>
                 <div class="avatar-inner-ring"></div>
-                <!-- Sửa lại tên file ảnh của bạn nếu cần -->
                 <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
             </div>
         </div>
 
-        <a href="#about" class="scroll-indicator reveal" style="transition-delay: 0.4s;">
+        <a href="#about" class="scroll-indicator">
             <span>01 — VỀ TÔI</span>
             <span>↓</span>
         </a>
@@ -479,11 +453,11 @@
 
     <!-- About Section -->
     <section id="about">
-        <div class="section-header reveal">01 — Về tôi</div>
-        <h2 class="section-title reveal">Hành trình & Góc nhìn</h2>
+        <div class="section-header">01 — Về tôi</div>
+        <h2 class="section-title">Hành trình & Góc nhìn</h2>
         
         <div class="grid-2">
-            <div class="text-block reveal">
+            <div class="text-block">
                 <p>
                     Chào bạn, mình là Nguyễn Trần Mai Linh. Trong suốt quá trình học tập khối ngành Công nghệ thông tin, mình nhận ra bản thân có thế mạnh đặc biệt trong việc quan sát hệ thống, tìm lỗi và phân tích luồng hoạt động.
                 </p>
@@ -499,11 +473,11 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <div class="section-header reveal">02 — Kỹ năng</div>
-        <h2 class="section-title reveal">Công cụ & Khả năng</h2>
+        <div class="section-header">02 — Kỹ năng</div>
+        <h2 class="section-title">Công cụ & Khả năng</h2>
         
         <div class="grid-2">
-            <div class="skill-box reveal">
+            <div class="skill-box">
                 <h3>Định hướng QA/QC Tester</h3>
                 <ul class="skill-list">
                     <li>Nắm vững quy trình phát triển phần mềm.</li>
@@ -513,7 +487,7 @@
                 </ul>
             </div>
             
-            <div class="skill-box reveal" style="transition-delay: 0.2s;">
+            <div class="skill-box">
                 <h3>Nền tảng Công nghệ</h3>
                 <ul class="skill-list">
                     <li>Quản lý version và mã nguồn: Git.</li>
@@ -527,10 +501,10 @@
 
     <!-- Contact Section -->
     <section id="contact" style="min-height: 70vh;">
-        <div class="section-header reveal">03 — Liên hệ</div>
-        <h2 class="section-title reveal">Kết nối với mình</h2>
+        <div class="section-header">03 — Liên hệ</div>
+        <h2 class="section-title">Kết nối với mình</h2>
         
-        <div class="text-block reveal" style="text-align: left; max-width: 600px;">
+        <div class="text-block" style="text-align: left; max-width: 600px;">
             <p>
                 Bạn đang tìm kiếm một Thực tập sinh Kiểm thử phần mềm cẩn thận, ham học hỏi và sẵn sàng đóng góp giá trị cho dự án? Đừng ngần ngại liên lạc với mình nhé!
             </p>
@@ -547,42 +521,29 @@
 
     <!-- JavaScript Scripts -->
     <script>
-        // 1. Logic bóng phát sáng theo chuột
+        // Logic di chuyển bóng sáng mượt mà theo chuột
         const cursorGlow = document.getElementById('cursor-glow');
         
         document.addEventListener('mousemove', (e) => {
-            // Lấy tọa độ chuột
             const x = e.clientX;
             const y = e.clientY;
             
-            // Cập nhật vị trí bóng sáng mượt mà
             cursorGlow.style.left = `${x}px`;
             cursorGlow.style.top = `${y}px`;
         });
 
-        // 2. Logic Scroll Reveal (Hiệu ứng cuộn trang)
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Khoảng cách để kích hoạt
-
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        // Tự động gán hiệu ứng cuộn mượt cho thanh menu điều hướng
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
-            }
-        }
-
-        // Kích hoạt khi cuộn và khi vừa load trang
-        window.addEventListener("scroll", reveal);
-        reveal();
-
-        // 3. Logic ẩn/hiện nền Header khi cuộn
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(9, 9, 11, 0.9)';
-                header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
-            } else {Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+            });
+        });
+    </script>
+</body>
+</html>
