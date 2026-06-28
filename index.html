@@ -7,12 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
         :root {
             --bg-color: #09090b;
@@ -28,416 +23,75 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 50px 50px;
-            background-position: center center;
             scroll-behavior: smooth;
         }
 
-        /* Bóng sáng theo trỏ chuột */
         #cursor-glow {
-            position: fixed;
-            top: -400px;
-            left: -400px;
-            width: 400px;
-            height: 400px;
+            position: fixed; top: -400px; left: -400px; width: 400px; height: 400px;
             background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: -1;
+            border-radius: 50%; transform: translate(-50%, -50%);
+            pointer-events: none; z-index: -1;
         }
 
-        /* Header Navigation */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-light);
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-light); z-index: 100;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #fff; }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
+        section { padding: 150px 10% 80px; }
+        #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #fff;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .btn-contact {
-            padding: 0.6rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-contact:hover {
-            background: #fff;
-            color: #000;
-            box-shadow: 0 0 20px rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Container Sections */
-        section {
-            padding: 150px 10% 80px;
-            position: relative;
-        }
-
-        /* Hero Section */
-        #home {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-        }
-
-        .hero-content {
-            flex: 1.2;
-        }
-
+        .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
         .hero-name {
-            font-size: clamp(3.5rem, 6vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
+            font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem;
             background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: shine 4s linear infinite;
         }
+        @keyframes shine { to { background-position: 200% center; } }
+        .hero-title { font-size: 1.1rem; color: #fff; margin-bottom: 2rem; padding: 8px 20px; border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 20px; background: rgba(167, 139, 250, 0.05); display: inline-block; }
+        .hero-desc { color: var(--text-muted); line-height: 1.8; font-size: 1.15rem; max-width: 550px; }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        .avatar { width: 340px; height: 340px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-color); box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
 
-        .hero-title {
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 2rem;
-            font-weight: 500;
-            display: inline-block;
-            padding: 8px 20px;
-            border: 1px solid rgba(167, 139, 250, 0.3);
-            border-radius: 20px;
-            background: rgba(167, 139, 250, 0.05);
-            line-height: 1.6;
-        }
-
-        .hero-title span {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .hero-desc {
-            color: var(--text-muted);
-            line-height: 1.8;
-            font-size: 1.15rem;
-            max-width: 550px;
-        }
-
-        /* Avatar */
-        .hero-image-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .avatar-outer-ring {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            border-radius: 50%;
-            border: 1px dashed rgba(139, 92, 246, 0.3);
-            animation: spin 40s linear infinite;
-        }
-
-        .avatar-inner-ring {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            border: 2px solid rgba(139, 92, 246, 0.4);
-            animation: spin 20s linear infinite reverse;
-        }
-
-        .avatar {
-            width: 340px;
-            height: 340px;
-            border-radius: 50%;
-            object-fit: cover;
-            z-index: 10;
-            border: 4px solid var(--bg-color);
-            transition: transform 0.5s ease;
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
-        }
-
-        .hero-image-wrapper:hover .avatar {
-            transform: scale(1.05);
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            animation: bounce 2s infinite;
-            text-decoration: none;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-10px) translateX(-50%); }
-            60% { transform: translateY(-5px) translateX(-50%); }
-        }
-
-        /* Section Titles */
-        .section-header {
-            font-size: 0.95rem;
-            color: var(--accent);
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        .section-header { font-size: 0.95rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; }
+        .section-title { font-size: 2.8rem; font-weight: 800; margin-bottom: 4rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
         
-        .section-header::after {
-            content: '';
-            height: 1px;
-            background: rgba(167, 139, 250, 0.3);
-            flex-grow: 1;
-            max-width: 100px;
-        }
-
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 4rem;
-        }
-
-        /* Grids */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .text-block {
-            color: var(--text-muted);
-            line-height: 1.9;
-            font-size: 1.1rem;
-        }
-
-        .text-block p {
-            margin-bottom: 1.8rem;
-        }
-
-        /* --- CẬP NHẬT MÀU SẮC CHO KHỐI KỸ NĂNG --- */
-        .info-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-light);
-            padding: 2.5rem;
-            border-radius: 24px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Biến màu sắc riêng cho từng thẻ */
-        .skill-qa {
-            --theme-color: #38bdf8; /* Xanh lơ */
-            --theme-glow: rgba(56, 189, 248, 0.15);
-            border-top: 3px solid var(--theme-color);
-        }
-
-        .skill-tech {
-            --theme-color: #f472b6; /* Hồng */
-            --theme-glow: rgba(244, 114, 182, 0.15);
-            border-top: 3px solid var(--theme-color);
-        }
-
-        .info-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
-            transform: skewX(-25deg);
-            transition: 0.5s;
-        }
-
-        .info-box:hover::before {
-            left: 150%;
-        }
-
-        /* Hiệu ứng hover ăn theo màu của thẻ */
-        .info-box:hover {
-            border-color: var(--theme-color);
-            background: var(--theme-glow);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 25px var(--theme-glow);
-        }
-
-        .info-box h3 {
-            font-size: 1.4rem;
-            color: var(--theme-color); /* Tiêu đề thẻ có màu riêng */
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
-
-        .skill-list {
-            list-style: none;
-            color: var(--text-muted);
-        }
-
-        .skill-list li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            line-height: 1.6;
-            transition: color 0.3s;
-        }
+        .skills-grid-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .info-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; transition: 0.4s; }
+        .info-box:hover { border-color: var(--theme-color); transform: translateY(-8px); background: var(--theme-glow); }
         
-        .info-box:hover .skill-list li {
-            color: #fff; /* Chữ sáng lên khi hover */
-        }
+        .skill-qa { --theme-color: #38bdf8; --theme-glow: rgba(56, 189, 248, 0.05); border-top: 4px solid var(--theme-color); }
+        .skill-tech { --theme-color: #f472b6; --theme-glow: rgba(244, 114, 182, 0.05); border-top: 4px solid var(--theme-color); }
+        .skill-ai { --theme-color: #fbbf24; --theme-glow: rgba(251, 191, 36, 0.05); border-top: 4px solid var(--theme-color); }
+        .skill-design { --theme-color: #34d399; --theme-glow: rgba(52, 211, 153, 0.05); border-top: 4px solid var(--theme-color); }
+        
+        .info-box h3 { color: var(--theme-color); margin-bottom: 1.5rem; }
+        .skill-list { list-style: none; color: var(--text-muted); }
+        .skill-list li { margin-bottom: 1rem; display: flex; gap: 10px; }
+        .skill-list li::before { content: '✦'; color: var(--theme-color); }
 
-        /* Chấm đầu dòng ăn theo màu của thẻ */
-        .info-box .skill-list li::before {
-            content: '✦';
-            color: var(--theme-color);
-            font-size: 1.2rem;
-            line-height: 1.2;
-            text-shadow: 0 0 10px var(--theme-color);
-        }
-
-        /* Social Pills */
-        .social-pills {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-pill {
-            padding: 0.8rem 1.8rem;
-            border: 1px solid var(--border-light);
-            border-radius: 50px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            background: rgba(255,255,255,0.03);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .social-pill:hover {
-            border-color: var(--accent);
-            background: rgba(167, 139, 250, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(167, 139, 250, 0.1);
-        }
-
-        /* Responsive */
+        .social-pill { padding: 0.8rem 1.8rem; border: 1px solid var(--border-light); border-radius: 50px; color: #fff; text-decoration: none; font-size: 1rem; background: rgba(255,255,255,0.03); display: inline-block; margin-right: 1rem; }
+        
         @media (max-width: 992px) {
-            .hero-container { flex-direction: column-reverse; text-align: center; gap: 2rem; }
-            #cursor-glow { display: none; }
-            .hero-name { font-size: 3rem; }
-            .hero-desc { margin: 0 auto; }
-            .social-pills { justify-content: center; }
-            section { padding: 100px 5% 50px; }
-            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-            .avatar-outer-ring { width: 320px; height: 320px; }
-            .avatar-inner-ring { width: 280px; height: 280px; }
-            .avatar { width: 240px; height: 240px; }
+            .hero-container { flex-direction: column; text-align: center; }
+            .grid-2, .skills-grid-bento { grid-template-columns: 1fr; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
-
     <div id="cursor-glow"></div>
-
     <header>
         <a href="#" class="logo">M.Linh</a>
         <ul class="nav-links">
@@ -445,131 +99,84 @@
             <li><a href="#about">Về tôi</a></li>
             <li><a href="#skills">Kỹ năng</a></li>
         </ul>
-        <a href="#contact" class="btn-contact">Liên hệ ngay</a>
     </header>
 
     <section id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <p class="hero-title">
-                    Sinh viên ngành Công nghệ thông tin<br>
-                    <span>Chuyên ngành: Kỹ thuật Phần mềm</span>
-                </p>
-                
+                <p class="hero-title">Sinh viên ngành Công nghệ thông tin<br><span>Chuyên ngành: Kỹ thuật Phần mềm</span></p>
                 <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
-
-                <p class="hero-desc">
-                    Luôn nỗ lực học hỏi, đề cao tính cẩn thận và tính chính xác trong công việc. Mình hướng tới việc xây dựng nền tảng vững chắc trong lĩnh vực Kiểm thử phần mềm (QA/QC).
-                </p>
+                <p class="hero-desc">Luôn nỗ lực học hỏi, đề cao tính cẩn thận và tính chính xác trong công việc. Mình hướng tới việc xây dựng nền tảng vững chắc trong lĩnh vực Kiểm thử phần mềm (QA/QC).</p>
             </div>
-
-            <div class="hero-image-wrapper">
-                <div class="avatar-outer-ring"></div>
-                <div class="avatar-inner-ring"></div>
-                <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
-            </div>
+            <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
         </div>
-
-        <a href="#about" class="scroll-indicator">
-            <span>01 — VỀ TÔI</span>
-            <span>↓</span>
-        </a>
     </section>
 
     <section id="about">
         <div class="section-header">01 — Về tôi</div>
         <h2 class="section-title">Hành trình & Góc nhìn</h2>
-        
         <div class="grid-2">
-            <div class="text-block">
-                <p>
-                    Chào bạn, mình là Nguyễn Trần Mai Linh. Trong quá trình học tập khối ngành Công nghệ thông tin, mình nhận ra bản thân có sự hứng thú đặc biệt với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng sản phẩm.
-                </p>
-                <p>
-                    Việc trực tiếp thực hành và tìm hiểu sâu về kiến trúc phần mềm đã rèn luyện cho mình sự cẩn thận và góc nhìn chi tiết. Đối với mình, việc học hỏi không ngừng từ các bài toán thực tế là cách tốt nhất để hoàn thiện kỹ năng kiểm thử.
-                </p>
-                <p>
-                    Bên cạnh niềm đam mê với công nghệ, mình luôn cố gắng cân bằng cuộc sống bằng các hoạt động thể thao. Bóng chuyền và cầu lông là hai bộ môn yêu thích giúp mình rèn luyện sức bền, sự nhanh nhạy và tinh thần phối hợp đồng đội tốt hơn.
-                </p>
-            </div>
+            <p style="color: var(--text-muted); line-height: 1.9; font-size: 1.1rem;">Chào bạn, mình là Nguyễn Trần Mai Linh. Mình hứng thú với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng sản phẩm. Với mình, học hỏi từ các bài toán thực tế là cách tốt nhất để hoàn thiện kỹ năng kiểm thử. Ngoài công việc, mình yêu thích bóng chuyền và cầu lông để rèn luyện sự bền bỉ và tinh thần đồng đội.</p>
         </div>
     </section>
 
     <section id="skills">
         <div class="section-header">02 — Kỹ năng</div>
         <h2 class="section-title">Khả năng tích lũy</h2>
-        
-        <div class="grid-2">
+        <div class="skills-grid-bento">
             <div class="info-box skill-qa">
-                <h3>Định hướng QA/QC Tester</h3>
+                <h3>🎯 Quality Assurance</h3>
                 <ul class="skill-list">
-                    <li>Tìm hiểu quy trình phát triển và kiểm thử phần mềm.</li>
-                    <li>Phân tích yêu cầu và bước đầu xây dựng kịch bản kiểm thử (Test case).</li>
-                    <li>Thực hành kiểm thử thủ công (Manual Testing) cẩn thận.</li>
-                    <li>Tập trung vào tính logic và trải nghiệm của người dùng trên hệ thống.</li>
+                    <li>Manual Testing: Test Plan, Test Case, Bug Report.</li>
+                    <li>API Testing: Postman, Insomnia.</li>
+                    <li>Automation Basics: Selenium, Playwright.</li>
+                    <li>Performance & Security: JMeter, OWASP ZAP.</li>
                 </ul>
             </div>
-            
             <div class="info-box skill-tech">
-                <h3>Nền tảng Kỹ thuật</h3>
+                <h3>⚙️ Backend & Systems</h3>
                 <ul class="skill-list">
-                    <li>Quản lý mã nguồn cơ bản với Git.</li>
-                    <li>Làm quen với kiến trúc và môi trường triển khai Docker.</li>
-                    <li>Nền tảng lập trình Python và tiếp cận các mô hình Machine Learning cơ bản.</li>
-                    <li>Sử dụng các công cụ hỗ trợ công việc như Microsoft Project, Excel.</li>
+                    <li>Ngôn ngữ: Python, Java, Node.js.</li>
+                    <li>Cơ sở dữ liệu: PostgreSQL, MongoDB, MySQL.</li>
+                    <li>Hạ tầng: Docker, Linux Server.</li>
+                    <li>CI/CD: GitHub Actions, Jenkins.</li>
+                </ul>
+            </div>
+            <div class="info-box skill-ai">
+                <h3>🤖 AI & Data Science</h3>
+                <ul class="skill-list">
+                    <li>Machine Learning: Scikit-learn, Weka, RandomForest.</li>
+                    <li>Data Analysis: Pandas, NumPy, Matplotlib.</li>
+                    <li>Phân tích & Xử lý: Orange Data Mining.</li>
+                    <li>Mobile Dev: Flutter / Dart.</li>
+                </ul>
+            </div>
+            <div class="info-box skill-design">
+                <h3>🎨 Design & Development</h3>
+                <ul class="skill-list">
+                    <li>Frontend: React, Next.js, HTML5, CSS3, Tailwind.</li>
+                    <li>Design: Figma, Adobe XD, Photoshop.</li>
+                    <li>Game Dev: Unity.</li>
+                    <li>Quản lý dự án: Microsoft Project, Jira.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="contact" style="padding-bottom: 120px;">
+    <section id="contact">
         <div class="section-header">03 — Liên hệ</div>
         <h2 class="section-title">Kết nối với mình</h2>
-        
-        <div class="text-block" style="text-align: left; max-width: 650px;">
-            <p>
-                Mình luôn hoan nghênh và trân trọng mọi cơ hội được kết nối. Dù bạn muốn trao đổi chia sẻ kinh nghiệm về công nghệ, tìm hiểu về quy trình kiểm thử, hay đơn giản là muốn giao lưu kết bạn và cùng chơi thể thao, đừng ngần ngại nhắn tin cho mình nhé!
-            </p>
-            <div class="social-pills">
-                <a href="mailto:linhnu0407@gmail.com" class="social-pill">
-                    ✉️ linhnu0407@gmail.com
-                </a>
-                <a href="tel:+84968158259" class="social-pill">
-                    📞 +84 968158259
-                </a>
-                <a href="https://github.com/linh472212" target="_blank" class="social-pill">
-                    💻 GitHub
-                </a>
-            </div>
-        </div>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Mình luôn hoan nghênh mọi cơ hội kết nối để chia sẻ kiến thức, kinh nghiệm hoặc đơn giản là làm quen!</p>
+        <a href="mailto:linhnu0407@gmail.com" class="social-pill">✉️ linhnu0407@gmail.com</a>
+        <a href="tel:+84968158259" class="social-pill">📞 +84 968158259</a>
+        <a href="https://github.com/linh472212" target="_blank" class="social-pill">💻 GitHub</a>
     </section>
 
     <script>
-        // Logic di chuyển bóng sáng mượt mà theo chuột
-        const cursorGlow = document.getElementById('cursor-glow');
-        
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            cursorGlow.style.left = `${x}px`;
-            cursorGlow.style.top = `${y}px`;
-        });
-
-        // Tự động gán hiệu ứng cuộn mượt cho thanh menu điều hướng
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
+            const cursorGlow = document.getElementById('cursor-glow');
+            cursorGlow.style.left = `${e.clientX}px`;
+            cursorGlow.style.top = `${e.clientY}px`;
         });
     </script>
 </body>
