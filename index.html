@@ -185,6 +185,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 2.5rem;
+            flex-wrap: wrap;
         }
 
         .social-pill {
@@ -394,7 +395,7 @@
             #cursor-glow { display: none; }
             .hero-name { font-size: 3rem; }
             .hero-desc { margin: 0 auto; }
-            .social-pills { justify-content: center; flex-wrap: wrap; }
+            .social-pills { justify-content: center; }
             .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
             .avatar-outer-ring { width: 320px; height: 320px; }
             .avatar-inner-ring { width: 280px; height: 280px; }
@@ -405,10 +406,8 @@
 </head>
 <body>
 
-    <!-- Bóng phát sáng chạy mượt theo chuột -->
     <div id="cursor-glow"></div>
 
-    <!-- Header Navigation -->
     <header>
         <a href="#" class="logo">M.Linh</a>
         <ul class="nav-links">
@@ -419,19 +418,12 @@
         <a href="#contact" class="btn-contact">Liên hệ ngay</a>
     </header>
 
-    <!-- Hero Section -->
     <section id="home">
         <div class="hero-container">
             <div class="hero-content">
                 <p class="hero-title">Sinh viên ngành Công nghệ thông tin</p>
                 
                 <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
-                
-                <div class="social-pills">
-                    <a href="#" class="social-pill">GitHub</a>
-                    <a href="mailto:linhnu0407@gmail.com" class="social-pill">Email</a>
-                    <a href="#" class="social-pill">LinkedIn</a>
-                </div>
 
                 <p class="hero-desc">
                     Sinh viên đam mê công nghệ với tư duy logic nhạy bén, chú trọng tính chính xác. Định hướng phát triển sự nghiệp trở thành một QA/QC Tester chuyên nghiệp.
@@ -451,7 +443,6 @@
         </a>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="section-header">01 — Về tôi</div>
         <h2 class="section-title">Hành trình & Góc nhìn</h2>
@@ -471,7 +462,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <div class="section-header">02 — Kỹ năng</div>
         <h2 class="section-title">Công cụ & Khả năng</h2>
@@ -499,7 +489,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" style="min-height: 70vh;">
         <div class="section-header">03 — Liên hệ</div>
         <h2 class="section-title">Kết nối với mình</h2>
@@ -515,11 +504,13 @@
                 <a href="tel:+84968158259" class="social-pill" style="font-size: 1rem; padding: 0.8rem 2rem;">
                     +84 968158259
                 </a>
+                <a href="https://github.com/yourusername" target="_blank" class="social-pill" style="font-size: 1rem; padding: 0.8rem 2rem;">
+                    GitHub
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- JavaScript Scripts -->
     <script>
         // Logic di chuyển bóng sáng mượt mà theo chuột
         const cursorGlow = document.getElementById('cursor-glow');
