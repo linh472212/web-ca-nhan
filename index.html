@@ -28,45 +28,22 @@
             scroll-behavior: smooth;
         }
 
-        #cursor-glow {
-            position: fixed; top: -400px; left: -400px; width: 400px; height: 400px;
-            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-            border-radius: 50%; transform: translate(-50%, -50%);
-            pointer-events: none; z-index: -1;
-        }
-
-        header {
-            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-light); z-index: 100;
-        }
-
+        /* Header & Layout */
+        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-light); z-index: 100; }
         .logo { font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none; }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: #fff; }
-
+        
         section { padding: 150px 10% 80px; }
-        #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        #home { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
 
-        .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
-        .hero-name {
-            font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-        }
+        .hero-name { font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
-        .hero-title { font-size: 1.1rem; color: #fff; margin-bottom: 2rem; padding: 8px 20px; border: 1px solid rgba(167, 139, 250, 0.3); border-radius: 20px; background: rgba(167, 139, 250, 0.05); display: inline-block; }
-        .hero-desc { color: var(--text-muted); line-height: 1.8; font-size: 1.15rem; max-width: 550px; }
-
+        
         .avatar { width: 340px; height: 340px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-color); box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
 
-        .section-header { font-size: 0.95rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; }
-        .section-title { font-size: 2.8rem; font-weight: 800; margin-bottom: 4rem; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        
+        /* Skills Bento Grid */
         .skills-grid-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         .info-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; transition: 0.4s; }
         .info-box:hover { border-color: var(--theme-color); transform: translateY(-8px); background: var(--theme-glow); }
@@ -74,7 +51,7 @@
         .skill-qa { --theme-color: #38bdf8; --theme-glow: rgba(56, 189, 248, 0.05); border-top: 4px solid var(--theme-color); }
         .skill-tech { --theme-color: #f472b6; --theme-glow: rgba(244, 114, 182, 0.05); border-top: 4px solid var(--theme-color); }
         .skill-ai { --theme-color: #fbbf24; --theme-glow: rgba(251, 191, 36, 0.05); border-top: 4px solid var(--theme-color); }
-        .skill-design { --theme-color: #34d399; --theme-glow: rgba(52, 211, 153, 0.05); border-top: 4px solid var(--theme-color); }
+        .skill-tools { --theme-color: #34d399; --theme-glow: rgba(52, 211, 153, 0.05); border-top: 4px solid var(--theme-color); }
         
         .info-box h3 { color: var(--theme-color); margin-bottom: 1.5rem; }
         .skill-list { list-style: none; color: var(--text-muted); }
@@ -84,14 +61,12 @@
         .social-pill { padding: 0.8rem 1.8rem; border: 1px solid var(--border-light); border-radius: 50px; color: #fff; text-decoration: none; font-size: 1rem; background: rgba(255,255,255,0.03); display: inline-block; margin-right: 1rem; }
         
         @media (max-width: 992px) {
-            .hero-container { flex-direction: column; text-align: center; }
-            .grid-2, .skills-grid-bento { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+            #home { flex-direction: column; text-align: center; }
+            .skills-grid-bento { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div id="cursor-glow"></div>
     <header>
         <a href="#" class="logo">M.Linh</a>
         <ul class="nav-links">
@@ -102,82 +77,67 @@
     </header>
 
     <section id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <p class="hero-title">Sinh viên ngành Công nghệ thông tin<br><span>Chuyên ngành: Kỹ thuật Phần mềm</span></p>
-                <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
-                <p class="hero-desc">Luôn nỗ lực học hỏi, đề cao tính cẩn thận và tính chính xác trong công việc. Mình hướng tới việc xây dựng nền tảng vững chắc trong lĩnh vực Kiểm thử phần mềm (QA/QC).</p>
-            </div>
-            <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
+        <div>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Sinh viên chuyên ngành Kỹ thuật Phần mềm</p>
+            <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
+            <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 500px;">Định hướng trở thành QA/QC Tester, luôn chú trọng tính cẩn thận và tư duy hệ thống trong công việc.</p>
         </div>
+        <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
     </section>
 
     <section id="about">
-        <div class="section-header">01 — Về tôi</div>
-        <h2 class="section-title">Hành trình & Góc nhìn</h2>
-        <div class="grid-2">
-            <p style="color: var(--text-muted); line-height: 1.9; font-size: 1.1rem;">Chào bạn, mình là Nguyễn Trần Mai Linh. Mình hứng thú với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng sản phẩm. Với mình, học hỏi từ các bài toán thực tế là cách tốt nhất để hoàn thiện kỹ năng kiểm thử. Ngoài công việc, mình yêu thích bóng chuyền và cầu lông để rèn luyện sự bền bỉ và tinh thần đồng đội.</p>
-        </div>
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Về tôi</h2>
+        <p style="color: var(--text-muted); line-height: 1.9; font-size: 1.1rem; max-width: 800px;">
+            Chào bạn, mình là Nguyễn Trần Mai Linh. Mình hứng thú với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng sản phẩm. Với mình, học hỏi từ các bài toán thực tế là cách tốt nhất để hoàn thiện kỹ năng kiểm thử. Ngoài công việc, mình yêu thích bóng chuyền và cầu lông để rèn luyện sự bền bỉ và tinh thần đồng đội.
+        </p>
     </section>
 
     <section id="skills">
-        <div class="section-header">02 — Kỹ năng</div>
-        <h2 class="section-title">Khả năng tích lũy</h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: 4rem;">Kỹ năng</h2>
         <div class="skills-grid-bento">
             <div class="info-box skill-qa">
-                <h3>🎯 Quality Assurance</h3>
+                <h3>🎯 Kiểm thử & QA</h3>
                 <ul class="skill-list">
-                    <li>Manual Testing: Test Plan, Test Case, Bug Report.</li>
-                    <li>API Testing: Postman, Insomnia.</li>
-                    <li>Automation Basics: Selenium, Playwright.</li>
-                    <li>Performance & Security: JMeter, OWASP ZAP.</li>
+                    <li>Quy trình Kiểm thử phần mềm (Software Testing Life Cycle).</li>
+                    <li>Phân tích yêu cầu và thiết kế Test case.</li>
+                    <li>Kiểm thử thủ công (Manual Testing).</li>
+                    <li>Tư duy logic & Phân tích hệ thống.</li>
                 </ul>
             </div>
             <div class="info-box skill-tech">
-                <h3>⚙️ Backend & Systems</h3>
+                <h3>⚙️ Kỹ thuật & Mã nguồn mở</h3>
                 <ul class="skill-list">
-                    <li>Ngôn ngữ: Python, Java, Node.js.</li>
-                    <li>Cơ sở dữ liệu: PostgreSQL, MongoDB, MySQL.</li>
-                    <li>Hạ tầng: Docker, Linux Server.</li>
-                    <li>CI/CD: GitHub Actions, Jenkins.</li>
+                    <li>Kiến trúc phần mềm & Hệ thống (Docker).</li>
+                    <li>Quản lý mã nguồn với Git.</li>
+                    <li>Quản trị & Cấu hình Website (WordPress).</li>
+                    <li>Hệ điều hành & Server cơ bản.</li>
                 </ul>
             </div>
             <div class="info-box skill-ai">
-                <h3>🤖 AI & Data Science</h3>
+                <h3>🤖 Dữ liệu & AI</h3>
                 <ul class="skill-list">
-                    <li>Machine Learning: Scikit-learn, Weka, RandomForest.</li>
-                    <li>Data Analysis: Pandas, NumPy, Matplotlib.</li>
-                    <li>Phân tích & Xử lý: Orange Data Mining.</li>
-                    <li>Mobile Dev: Flutter / Dart.</li>
+                    <li>Ngôn ngữ lập trình: Python.</li>
+                    <li>Phân tích & Học máy: Mô hình hồi quy, phân cụm, Mạng nơ-ron (ANN).</li>
+                    <li>Công cụ: Google Colab, Orange Data Mining.</li>
                 </ul>
             </div>
-            <div class="info-box skill-design">
-                <h3>🎨 Design & Development</h3>
+            <div class="info-box skill-tools">
+                <h3>🛠️ Công cụ hỗ trợ</h3>
                 <ul class="skill-list">
-                    <li>Frontend: React, Next.js, HTML5, CSS3, Tailwind.</li>
-                    <li>Design: Figma, Adobe XD, Photoshop.</li>
-                    <li>Game Dev: Unity.</li>
-                    <li>Quản lý dự án: Microsoft Project, Jira.</li>
+                    <li>Quản lý dự án: Microsoft Project, Excel.</li>
+                    <li>Phân tích số liệu & Báo cáo.</li>
+                    <li>Tư duy giải quyết vấn đề (Problem solving).</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="section-header">03 — Liên hệ</div>
-        <h2 class="section-title">Kết nối với mình</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Mình luôn hoan nghênh mọi cơ hội kết nối để chia sẻ kiến thức, kinh nghiệm hoặc đơn giản là làm quen!</p>
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Kết nối với mình</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Mình luôn hoan nghênh mọi cơ hội kết nối để chia sẻ kiến thức hoặc giao lưu!</p>
         <a href="mailto:linhnu0407@gmail.com" class="social-pill">✉️ linhnu0407@gmail.com</a>
         <a href="tel:+84968158259" class="social-pill">📞 +84 968158259</a>
         <a href="https://github.com/linh472212" target="_blank" class="social-pill">💻 GitHub</a>
     </section>
-
-    <script>
-        document.addEventListener('mousemove', (e) => {
-            const cursorGlow = document.getElementById('cursor-glow');
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
-        });
-    </script>
 </body>
 </html>
