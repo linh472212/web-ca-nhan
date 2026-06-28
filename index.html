@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mai Linh | QA/QC Tester</title>
+    <title>Nguyễn Trần Mai Linh | QA/QC Tester</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -19,7 +19,7 @@
             --grid-color: rgba(255, 255, 255, 0.05);
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
-            --purple-glow: rgba(139, 92, 246, 0.15);
+            --purple-glow: rgba(139, 92, 246, 0.2);
             --border-light: rgba(255, 255, 255, 0.1);
         }
 
@@ -27,25 +27,27 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            /* Tạo lưới Grid giống ảnh */
             background-image: 
                 linear-gradient(var(--grid-color) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 50px 50px;
             background-position: center center;
+            scroll-behavior: smooth;
         }
 
-        /* Ánh sáng mờ ảo phía sau (Blob) */
-        .glow-blob {
+        /* 1. Hiệu ứng trỏ chuột phát sáng */
+        #cursor-glow {
             position: fixed;
-            top: 20%;
-            left: 20%;
-            width: 50vw;
-            height: 50vw;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
             background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
             border-radius: 50%;
-            z-index: -1;
+            transform: translate(-50%, -50%);
             pointer-events: none;
+            z-index: -1;
+            transition: width 0.3s, height 0.3s;
         }
 
         /* Header Navigation */
@@ -57,10 +59,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(12px);
+            background: rgba(9, 9, 11, 0.7);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-light);
             z-index: 100;
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -69,6 +72,7 @@
             color: #fff;
             text-decoration: none;
             letter-spacing: -1px;
+            position: relative;
         }
 
         .nav-links {
@@ -82,6 +86,7 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
+            position: relative;
             transition: color 0.3s ease;
         }
 
@@ -89,20 +94,40 @@
             color: #fff;
         }
 
+        /* Gạch chân chạy mượt khi hover menu */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #a78bfa;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         .btn-contact {
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-light);
             border-radius: 20px;
             color: #fff;
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-contact:hover {
             background: #fff;
             color: #000;
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
 
         /* Container Sections */
@@ -113,6 +138,18 @@
             justify-content: center;
             padding: 0 10%;
             position: relative;
+        }
+
+        /* 2. Hiệu ứng cuộn trang (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
@@ -128,30 +165,41 @@
             flex: 1.2;
         }
 
+        /* 3. Chữ lấp lánh (Shimmer Effect) */
         .hero-name {
-            font-size: clamp(4rem, 8vw, 7rem);
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
             font-weight: 900;
             line-height: 1.1;
             letter-spacing: -2px;
             margin-bottom: 1.5rem;
-            /* Màu chữ gradient tím xanh giống ảnh */
-            background: linear-gradient(90deg, #a78bfa, #818cf8, #c084fc);
+            background: linear-gradient(
+                90deg, 
+                #a78bfa 0%, 
+                #fff 50%, 
+                #c084fc 100%
+            );
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
         }
 
         .hero-title {
             font-size: 1.2rem;
             color: #fff;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .hero-major {
-            color: #a78bfa;
-            font-weight: 600;
             margin-bottom: 2rem;
+            font-weight: 500;
+            display: inline-block;
+            padding: 5px 15px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 20px;
+            background: rgba(167, 139, 250, 0.05);
         }
 
         .social-pills {
@@ -161,22 +209,22 @@
         }
 
         .social-pill {
-            padding: 0.4rem 1.2rem;
+            padding: 0.5rem 1.5rem;
             border: 1px solid var(--border-light);
             border-radius: 50px;
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            backdrop-filter: blur(5px);
         }
 
         .social-pill:hover {
             border-color: #a78bfa;
             color: #fff;
-            background: rgba(167, 139, 250, 0.1);
+            background: rgba(167, 139, 250, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(167, 139, 250, 0.1);
         }
 
         .hero-desc {
@@ -186,7 +234,7 @@
             max-width: 500px;
         }
 
-        /* Avatar Styling (Vòng tròn viền) */
+        /* Avatar Styling */
         .hero-image-wrapper {
             flex: 1;
             display: flex;
@@ -197,35 +245,42 @@
 
         .avatar-outer-ring {
             position: absolute;
-            width: 450px;
-            height: 450px;
+            width: 480px;
+            height: 480px;
             border-radius: 50%;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            animation: spin 30s linear infinite;
+            border: 1px dashed rgba(139, 92, 246, 0.3);
+            animation: spin 40s linear infinite;
         }
 
         .avatar-inner-ring {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 420px;
+            height: 420px;
             border-radius: 50%;
-            border: 2px solid rgba(139, 92, 246, 0.5);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            animation: spin 20s linear infinite reverse;
         }
 
         .avatar {
-            width: 350px;
-            height: 350px;
+            width: 360px;
+            height: 360px;
             border-radius: 50%;
             object-fit: cover;
             z-index: 10;
             border: 4px solid var(--bg-color);
+            transition: transform 0.5s ease;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .hero-image-wrapper:hover .avatar {
+            transform: scale(1.05);
         }
 
         @keyframes spin {
             100% { transform: rotate(360deg); }
         }
 
-        /* Scroll Down Indicator */
+        /* Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -240,6 +295,7 @@
             font-weight: 600;
             letter-spacing: 1px;
             animation: bounce 2s infinite;
+            text-decoration: none;
         }
 
         @keyframes bounce {
@@ -256,10 +312,21 @@
             letter-spacing: 2px;
             margin-bottom: 1rem;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-header::after {
+            content: '';
+            height: 1px;
+            background: rgba(167, 139, 250, 0.3);
+            flex-grow: 1;
+            max-width: 100px;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 3rem;
         }
@@ -281,24 +348,46 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Skills Card */
+        /* 4. Khối Kỹ Năng - Hiệu ứng nổi */
         .skill-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-light);
-            padding: 2rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ánh sáng quét qua thẻ khi hover */
+        .skill-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+        }
+
+        .skill-box:hover::before {
+            left: 150%;
         }
 
         .skill-box:hover {
-            border-color: rgba(167, 139, 250, 0.4);
+            border-color: rgba(167, 139, 250, 0.5);
             background: rgba(167, 139, 250, 0.05);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(167, 139, 250, 0.1);
         }
 
         .skill-box h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #fff;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .skill-list {
@@ -307,15 +396,17 @@
         }
 
         .skill-list li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            align-items: flex-start;
+            gap: 10px;
         }
 
         .skill-list li::before {
-            content: '→';
+            content: '✦';
             color: #a78bfa;
+            font-size: 1.2rem;
+            line-height: 1.2;
         }
 
         /* Responsive */
@@ -325,20 +416,22 @@
                 text-align: center;
                 gap: 2rem;
             }
-            .hero-name { font-size: 4rem; }
+            #cursor-glow { display: none; } /* Tắt bóng chuột trên đt */
+            .hero-name { font-size: 3rem; }
             .hero-desc { margin: 0 auto; }
-            .social-pills { justify-content: center; }
+            .social-pills { justify-content: center; flex-wrap: wrap; }
             .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
-            .avatar-outer-ring { width: 350px; height: 350px; }
-            .avatar-inner-ring { width: 300px; height: 300px; }
-            .avatar { width: 250px; height: 250px; }
+            .avatar-outer-ring { width: 300px; height: 300px; }
+            .avatar-inner-ring { width: 260px; height: 260px; }
+            .avatar { width: 220px; height: 220px; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-blob"></div>
+    <!-- Bóng sáng theo chuột -->
+    <div id="cursor-glow"></div>
 
     <!-- Header -->
     <header>
@@ -354,11 +447,10 @@
     <!-- Hero Section -->
     <section id="home">
         <div class="hero-container">
-            <div class="hero-content">
+            <div class="hero-content reveal">
                 <p class="hero-title">Sinh viên ngành Công nghệ thông tin</p>
-                <p class="hero-major">Môn học nền tảng: Ứng dụng Mã nguồn mở</p>
                 
-                <h1 class="hero-name">Mai Linh</h1>
+                <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
                 
                 <div class="social-pills">
                     <a href="#" class="social-pill">GitHub</a>
@@ -371,14 +463,15 @@
                 </p>
             </div>
 
-            <div class="hero-image-wrapper">
+            <div class="hero-image-wrapper reveal" style="transition-delay: 0.2s;">
                 <div class="avatar-outer-ring"></div>
                 <div class="avatar-inner-ring"></div>
-                <img src="mailin.jpg" alt="Mai Linh" class="avatar">
+                <!-- Sửa lại tên file ảnh của bạn nếu cần -->
+                <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
             </div>
         </div>
 
-        <a href="#about" class="scroll-indicator">
+        <a href="#about" class="scroll-indicator reveal" style="transition-delay: 0.4s;">
             <span>01 — VỀ TÔI</span>
             <span>↓</span>
         </a>
@@ -386,16 +479,16 @@
 
     <!-- About Section -->
     <section id="about">
-        <div class="section-header">01 — Về tôi</div>
-        <h2 class="section-title">Hành trình & Góc nhìn</h2>
+        <div class="section-header reveal">01 — Về tôi</div>
+        <h2 class="section-title reveal">Hành trình & Góc nhìn</h2>
         
         <div class="grid-2">
-            <div class="text-block">
+            <div class="text-block reveal">
                 <p>
-                    Chào bạn, mình là Mai Linh. Trong suốt quá trình học tập khối ngành Công nghệ thông tin, mình nhận ra bản thân có thế mạnh đặc biệt trong việc quan sát hệ thống, tìm lỗi và phân tích luồng hoạt động.
+                    Chào bạn, mình là Nguyễn Trần Mai Linh. Trong suốt quá trình học tập khối ngành Công nghệ thông tin, mình nhận ra bản thân có thế mạnh đặc biệt trong việc quan sát hệ thống, tìm lỗi và phân tích luồng hoạt động.
                 </p>
                 <p>
-                    Việc trực tiếp thao tác triển khai hệ thống trong môn Ứng dụng Mã nguồn mở giúp mình hiểu sâu hơn về kiến trúc ứng dụng từ bên trong. Từ đó, mình rèn luyện được sự tỉ mỉ - một yếu tố sống còn của một người làm Kiểm thử phần mềm.
+                    Việc trực tiếp thao tác và triển khai các kiến trúc phần mềm giúp mình hiểu sâu hơn về hệ thống từ bên trong. Từ đó, mình rèn luyện được sự tỉ mỉ - một yếu tố sống còn của một người làm Kiểm thử phần mềm.
                 </p>
                 <p>
                     Sau những giờ làm việc căng thẳng với máy tính, mình thường tìm đến thể thao để cân bằng lại năng lượng. Bóng chuyền và cầu lông là hai môn thể thao yêu thích, giúp mình rèn luyện sức bền và tinh thần đồng đội.
@@ -406,11 +499,11 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <div class="section-header">02 — Kỹ năng</div>
-        <h2 class="section-title">Công cụ & Khả năng</h2>
+        <div class="section-header reveal">02 — Kỹ năng</div>
+        <h2 class="section-title reveal">Công cụ & Khả năng</h2>
         
         <div class="grid-2">
-            <div class="skill-box">
+            <div class="skill-box reveal">
                 <h3>Định hướng QA/QC Tester</h3>
                 <ul class="skill-list">
                     <li>Nắm vững quy trình phát triển phần mềm.</li>
@@ -420,7 +513,7 @@
                 </ul>
             </div>
             
-            <div class="skill-box">
+            <div class="skill-box reveal" style="transition-delay: 0.2s;">
                 <h3>Nền tảng Công nghệ</h3>
                 <ul class="skill-list">
                     <li>Quản lý version và mã nguồn: Git.</li>
@@ -434,10 +527,10 @@
 
     <!-- Contact Section -->
     <section id="contact" style="min-height: 70vh;">
-        <div class="section-header">03 — Liên hệ</div>
-        <h2 class="section-title">Kết nối với mình</h2>
+        <div class="section-header reveal">03 — Liên hệ</div>
+        <h2 class="section-title reveal">Kết nối với mình</h2>
         
-        <div class="text-block" style="text-align: left; max-width: 600px;">
+        <div class="text-block reveal" style="text-align: left; max-width: 600px;">
             <p>
                 Bạn đang tìm kiếm một Thực tập sinh Kiểm thử phần mềm cẩn thận, ham học hỏi và sẵn sàng đóng góp giá trị cho dự án? Đừng ngần ngại liên lạc với mình nhé!
             </p>
@@ -452,19 +545,44 @@
         </div>
     </section>
 
+    <!-- JavaScript Scripts -->
     <script>
-        // Smooth scrolling function
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
+        // 1. Logic bóng phát sáng theo chuột
+        const cursorGlow = document.getElementById('cursor-glow');
+        
+        document.addEventListener('mousemove', (e) => {
+            // Lấy tọa độ chuột
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // Cập nhật vị trí bóng sáng mượt mà
+            cursorGlow.style.left = `${x}px`;
+            cursorGlow.style.top = `${y}px`;
         });
-    </script>
-</body>
-</html>
+
+        // 2. Logic Scroll Reveal (Hiệu ứng cuộn trang)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Khoảng cách để kích hoạt
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // Kích hoạt khi cuộn và khi vừa load trang
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // 3. Logic ẩn/hiện nền Header khi cuộn
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(9, 9, 11, 0.9)';
+                header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+            } else {Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
