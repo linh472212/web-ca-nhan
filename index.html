@@ -3,141 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Trần Mai Linh | Personal Portfolio</title>
+    <title>Nguyễn Trần Mai Linh | QA/QC Tester</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
         :root {
-            --bg-color: #09090b;
-            --grid-color: rgba(255, 255, 255, 0.05);
-            --text-main: #ffffff;
-            --text-muted: #a1a1aa;
-            --purple-glow: rgba(139, 92, 246, 0.2);
-            --border-light: rgba(255, 255, 255, 0.1);
-            --accent: #a78bfa;
+            --bg: #0a0a0a;
+            --card: #141414;
+            --text: #ffffff;
+            --muted: #888888;
+            --accent: #ffffff;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 50px 50px;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+        
+        /* Layout */
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 100px 0; }
 
-        /* Header & Layout */
-        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-light); z-index: 100; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; text-decoration: none; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; }
-        
-        section { padding: 150px 10% 80px; }
-        #home { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; gap: 4rem; }
+        /* Header */
+        header { padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.2rem; }
+        .nav a { color: var(--muted); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; transition: 0.3s; }
+        .nav a:hover { color: var(--text); }
 
-        .hero-name { font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
-        @keyframes shine { to { background-position: 200% center; } }
+        /* Hero */
+        .hero { padding: 150px 0 100px; }
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -2px; }
+        .hero-desc { font-size: 1.2rem; color: var(--muted); max-width: 500px; margin-bottom: 2rem; }
         
-        .avatar { width: 340px; height: 340px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-color); box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
+        /* Bento Grid Skills */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .skill-card { background: var(--card); padding: 2rem; border-radius: 16px; border: 1px solid #222; }
+        .skill-card h3 { margin-bottom: 1rem; font-size: 1.1rem; color: var(--accent); }
+        .skill-card ul { list-style: none; color: var(--muted); }
+        .skill-card li { margin-bottom: 0.5rem; font-size: 0.9rem; }
 
-        /* Skills Bento Grid */
-        .skills-grid-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .info-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light); padding: 2.5rem; border-radius: 24px; transition: 0.4s; }
-        .info-box:hover { border-color: var(--theme-color); transform: translateY(-8px); background: var(--theme-glow); }
-        
-        .skill-qa { --theme-color: #38bdf8; --theme-glow: rgba(56, 189, 248, 0.05); border-top: 4px solid var(--theme-color); }
-        .skill-tech { --theme-color: #f472b6; --theme-glow: rgba(244, 114, 182, 0.05); border-top: 4px solid var(--theme-color); }
-        .skill-ai { --theme-color: #fbbf24; --theme-glow: rgba(251, 191, 36, 0.05); border-top: 4px solid var(--theme-color); }
-        .skill-tools { --theme-color: #34d399; --theme-glow: rgba(52, 211, 153, 0.05); border-top: 4px solid var(--theme-color); }
-        
-        .info-box h3 { color: var(--theme-color); margin-bottom: 1.5rem; }
-        .skill-list { list-style: none; color: var(--text-muted); }
-        .skill-list li { margin-bottom: 1rem; display: flex; gap: 10px; }
-        .skill-list li::before { content: '✦'; color: var(--theme-color); }
+        /* Contact */
+        .contact-box { background: var(--card); padding: 3rem; border-radius: 16px; text-align: center; }
+        .social-link { display: inline-block; margin: 1rem; color: var(--text); text-decoration: none; font-weight: 600; padding: 10px 20px; border: 1px solid #333; border-radius: 8px; }
+        .social-link:hover { background: #fff; color: #000; }
 
-        .social-pill { padding: 0.8rem 1.8rem; border: 1px solid var(--border-light); border-radius: 50px; color: #fff; text-decoration: none; font-size: 1rem; background: rgba(255,255,255,0.03); display: inline-block; margin-right: 1rem; }
-        
-        @media (max-width: 992px) {
-            #home { flex-direction: column; text-align: center; }
-            .skills-grid-bento { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <a href="#" class="logo">M.Linh</a>
-        <ul class="nav-links">
-            <li><a href="#home">Trang chủ</a></li>
-            <li><a href="#about">Về tôi</a></li>
-            <li><a href="#skills">Kỹ năng</a></li>
-        </ul>
-    </header>
+    <div class="container">
+        <header>
+            <div class="logo">M.LINH</div>
+            <nav class="nav">
+                <a href="#about">Giới thiệu</a>
+                <a href="#skills">Kỹ năng</a>
+                <a href="#contact">Liên hệ</a>
+            </nav>
+        </header>
 
-    <section id="home">
-        <div>
-            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Sinh viên chuyên ngành Kỹ thuật Phần mềm</p>
-            <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
-            <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 500px;">Định hướng trở thành QA/QC Tester, luôn chú trọng tính cẩn thận và tư duy hệ thống trong công việc.</p>
-        </div>
-        <img src="mailin.jpg" alt="Nguyễn Trần Mai Linh" class="avatar">
-    </section>
+        <section class="hero">
+            <h1>Nguyễn Trần Mai Linh</h1>
+            <p class="hero-desc">Sinh viên chuyên ngành Kỹ thuật Phần mềm. Đang nỗ lực rèn luyện để trở thành một QA/QC Tester chuyên nghiệp với tư duy hệ thống chỉn chu.</p>
+        </section>
 
-    <section id="about">
-        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Về tôi</h2>
-        <p style="color: var(--text-muted); line-height: 1.9; font-size: 1.1rem; max-width: 800px;">
-            Chào bạn, mình là Nguyễn Trần Mai Linh. Mình hứng thú với việc quan sát luồng hoạt động của hệ thống và rà soát để tối ưu hóa chất lượng sản phẩm. Với mình, học hỏi từ các bài toán thực tế là cách tốt nhất để hoàn thiện kỹ năng kiểm thử. Ngoài công việc, mình yêu thích bóng chuyền và cầu lông để rèn luyện sự bền bỉ và tinh thần đồng đội.
-        </p>
-    </section>
+        <section id="about">
+            <h2 style="margin-bottom: 1.5rem;">Về tôi</h2>
+            <p style="color: var(--muted); max-width: 600px;">Mình là một người cẩn thận, yêu thích việc quan sát luồng hoạt động của hệ thống để tối ưu hóa chất lượng sản phẩm. Với mình, công nghệ không chỉ là những dòng code, mà là cách chúng ta tạo ra trải nghiệm tốt nhất cho người dùng.</p>
+        </section>
 
-    <section id="skills">
-        <h2 style="font-size: 2.5rem; margin-bottom: 4rem;">Kỹ năng</h2>
-        <div class="skills-grid-bento">
-            <div class="info-box skill-qa">
-                <h3>🎯 Kiểm thử & QA</h3>
-                <ul class="skill-list">
-                    <li>Quy trình Kiểm thử phần mềm (Software Testing Life Cycle).</li>
-                    <li>Phân tích yêu cầu và thiết kế Test case.</li>
-                    <li>Kiểm thử thủ công (Manual Testing).</li>
-                    <li>Tư duy logic & Phân tích hệ thống.</li>
-                </ul>
+        <section id="skills">
+            <h2 style="margin-bottom: 2rem;">Kỹ năng</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🎯 Quality Assurance</h3>
+                    <ul><li>• Software Testing (Manual/Basic Auto)</li><li>• Test Plan, Test Case, Bug Report</li><li>• API Testing (Postman)</li><li>• Tư duy logic & Phân tích hệ thống</li></ul>
+                </div>
+                <div class="skill-card">
+                    <h3>⚙️ Kỹ thuật</h3>
+                    <ul><li>• Git & Quản lý mã nguồn</li><li>• Docker & Môi trường triển khai</li><li>• WordPress (Cấu hình, quản trị)</li><li>• Linux & Server cơ bản</li></ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🤖 AI & Dữ liệu</h3>
+                    <ul><li>• Python (Pandas, NumPy, Scikit-learn)</li><li>• Machine Learning (ANN, Clustering)</li><li>• Data Analysis & Visualization</li><li>• Orange Data Mining</li></ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🛠️ Công cụ hỗ trợ</h3>
+                    <ul><li>• Quản lý dự án: MS Project, Jira</li><li>• Văn phòng: Excel nâng cao</li><li>• Design (Figma, Photoshop)</li><li>• Unity & Phát triển Game cơ bản</li></ul>
+                </div>
             </div>
-            <div class="info-box skill-tech">
-                <h3>⚙️ Kỹ thuật & Mã nguồn mở</h3>
-                <ul class="skill-list">
-                    <li>Kiến trúc phần mềm & Hệ thống (Docker).</li>
-                    <li>Quản lý mã nguồn với Git.</li>
-                    <li>Quản trị & Cấu hình Website (WordPress).</li>
-                    <li>Hệ điều hành & Server cơ bản.</li>
-                </ul>
-            </div>
-            <div class="info-box skill-ai">
-                <h3>🤖 Dữ liệu & AI</h3>
-                <ul class="skill-list">
-                    <li>Ngôn ngữ lập trình: Python.</li>
-                    <li>Phân tích & Học máy: Mô hình hồi quy, phân cụm, Mạng nơ-ron (ANN).</li>
-                    <li>Công cụ: Google Colab, Orange Data Mining.</li>
-                </ul>
-            </div>
-            <div class="info-box skill-tools">
-                <h3>🛠️ Công cụ hỗ trợ</h3>
-                <ul class="skill-list">
-                    <li>Quản lý dự án: Microsoft Project, Excel.</li>
-                    <li>Phân tích số liệu & Báo cáo.</li>
-                    <li>Tư duy giải quyết vấn đề (Problem solving).</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact">
-        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Kết nối với mình</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Mình luôn hoan nghênh mọi cơ hội kết nối để chia sẻ kiến thức hoặc giao lưu!</p>
-        <a href="mailto:linhnu0407@gmail.com" class="social-pill">✉️ linhnu0407@gmail.com</a>
-        <a href="tel:+84968158259" class="social-pill">📞 +84 968158259</a>
-        <a href="https://github.com/linh472212" target="_blank" class="social-pill">💻 GitHub</a>
-    </section>
+        <section id="contact" class="contact-box">
+            <h2>Kết nối với mình</h2>
+            <p style="color: var(--muted); margin: 1rem 0;">Luôn sẵn sàng học hỏi và trao đổi kinh nghiệm!</p>
+            <a href="mailto:linhnu0407@gmail.com" class="social-link">Email: linhnu0407@gmail.com</a>
+            <a href="https://github.com/linh472212" target="_blank" class="social-link">GitHub</a>
+            <a href="tel:+84968158259" class="social-link">Phone: 0968158259</a>
+        </section>
+
+        <footer style="text-align: center; padding: 4rem 0; color: var(--muted); font-size: 0.8rem;">
+            © 2026 Nguyễn Trần Mai Linh
+        </footer>
+    </div>
 </body>
 </html>
