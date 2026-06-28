@@ -125,13 +125,13 @@
             transform: translateY(-2px);
         }
 
-        /* Container Sections (Đã nới lỏng khoảng cách để không bị dồn) */
+        /* Container Sections */
         section {
             padding: 150px 10% 80px;
             position: relative;
         }
 
-        /* Hero Section (Đảm bảo luôn vừa màn hình đầu tiên) */
+        /* Hero Section */
         #home {
             min-height: 100vh;
             display: flex;
@@ -150,19 +150,13 @@
             flex: 1.2;
         }
 
-        /* Chữ lấp lánh đổi màu mượt mà */
         .hero-name {
             font-size: clamp(3.5rem, 6vw, 5.5rem);
             font-weight: 900;
             line-height: 1.1;
             letter-spacing: -2px;
             margin-bottom: 1.5rem;
-            background: linear-gradient(
-                90deg, 
-                var(--accent) 0%, 
-                #fff 50%, 
-                #c084fc 100%
-            );
+            background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, #c084fc 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -174,15 +168,21 @@
         }
 
         .hero-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #fff;
             margin-bottom: 2rem;
             font-weight: 500;
             display: inline-block;
-            padding: 6px 18px;
+            padding: 8px 20px;
             border: 1px solid rgba(167, 139, 250, 0.3);
             border-radius: 20px;
             background: rgba(167, 139, 250, 0.05);
+            line-height: 1.6;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+            font-weight: 600;
         }
 
         .hero-desc {
@@ -192,7 +192,7 @@
             max-width: 550px;
         }
 
-        /* Avatar Viền Tròn Tự Động Xoay */
+        /* Avatar */
         .hero-image-wrapper {
             flex: 1;
             display: flex;
@@ -238,7 +238,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Indicator nút chuyển cuộn */
+        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -286,10 +286,10 @@
         .section-title {
             font-size: 2.8rem;
             font-weight: 800;
-            margin-bottom: 4rem; /* Tăng khoảng trống dưới tiêu đề */
+            margin-bottom: 4rem;
         }
 
-        /* Content Grids */
+        /* Grids */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -306,7 +306,7 @@
             margin-bottom: 1.8rem;
         }
 
-        /* Khối Box dùng chung */
+        /* --- CẬP NHẬT MÀU SẮC CHO KHỐI KỸ NĂNG --- */
         .info-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-light);
@@ -317,7 +317,19 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+        }
+
+        /* Biến màu sắc riêng cho từng thẻ */
+        .skill-qa {
+            --theme-color: #38bdf8; /* Xanh lơ */
+            --theme-glow: rgba(56, 189, 248, 0.15);
+            border-top: 3px solid var(--theme-color);
+        }
+
+        .skill-tech {
+            --theme-color: #f472b6; /* Hồng */
+            --theme-glow: rgba(244, 114, 182, 0.15);
+            border-top: 3px solid var(--theme-color);
         }
 
         .info-box::before {
@@ -334,16 +346,17 @@
             left: 150%;
         }
 
+        /* Hiệu ứng hover ăn theo màu của thẻ */
         .info-box:hover {
-            border-color: rgba(167, 139, 250, 0.5);
-            background: rgba(167, 139, 250, 0.05);
+            border-color: var(--theme-color);
+            background: var(--theme-glow);
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px rgba(167, 139, 250, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 25px var(--theme-glow);
         }
 
         .info-box h3 {
             font-size: 1.4rem;
-            color: #fff;
+            color: var(--theme-color); /* Tiêu đề thẻ có màu riêng */
             margin-bottom: 1.5rem;
             line-height: 1.4;
         }
@@ -359,16 +372,23 @@
             align-items: flex-start;
             gap: 10px;
             line-height: 1.6;
+            transition: color 0.3s;
+        }
+        
+        .info-box:hover .skill-list li {
+            color: #fff; /* Chữ sáng lên khi hover */
         }
 
-        .skill-list li::before {
+        /* Chấm đầu dòng ăn theo màu của thẻ */
+        .info-box .skill-list li::before {
             content: '✦';
-            color: var(--accent);
+            color: var(--theme-color);
             font-size: 1.2rem;
             line-height: 1.2;
+            text-shadow: 0 0 10px var(--theme-color);
         }
 
-        /* Nút Liên Hệ Mạng Xã Hội */
+        /* Social Pills */
         .social-pills {
             display: flex;
             gap: 1rem;
@@ -386,6 +406,9 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             background: rgba(255,255,255,0.03);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .social-pill:hover {
@@ -397,11 +420,7 @@
 
         /* Responsive */
         @media (max-width: 992px) {
-            .hero-container {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 2rem;
-            }
+            .hero-container { flex-direction: column-reverse; text-align: center; gap: 2rem; }
             #cursor-glow { display: none; }
             .hero-name { font-size: 3rem; }
             .hero-desc { margin: 0 auto; }
@@ -432,7 +451,10 @@
     <section id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <p class="hero-title">Sinh viên ngành Công nghệ thông tin</p>
+                <p class="hero-title">
+                    Sinh viên ngành Công nghệ thông tin<br>
+                    <span>Chuyên ngành: Kỹ thuật Phần mềm</span>
+                </p>
                 
                 <h1 class="hero-name">Nguyễn Trần <br>Mai Linh</h1>
 
@@ -478,7 +500,7 @@
         <h2 class="section-title">Khả năng tích lũy</h2>
         
         <div class="grid-2">
-            <div class="info-box">
+            <div class="info-box skill-qa">
                 <h3>Định hướng QA/QC Tester</h3>
                 <ul class="skill-list">
                     <li>Tìm hiểu quy trình phát triển và kiểm thử phần mềm.</li>
@@ -488,7 +510,7 @@
                 </ul>
             </div>
             
-            <div class="info-box">
+            <div class="info-box skill-tech">
                 <h3>Nền tảng Kỹ thuật</h3>
                 <ul class="skill-list">
                     <li>Quản lý mã nguồn cơ bản với Git.</li>
@@ -515,7 +537,7 @@
                 <a href="tel:+84968158259" class="social-pill">
                     📞 +84 968158259
                 </a>
-                <a href="https://github.com/yourusername" target="_blank" class="social-pill">
+                <a href="https://github.com/linh472212" target="_blank" class="social-pill">
                     💻 GitHub
                 </a>
             </div>
