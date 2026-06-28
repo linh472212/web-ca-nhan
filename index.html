@@ -21,6 +21,7 @@
             --text-muted: #a1a1aa;
             --purple-glow: rgba(139, 92, 246, 0.2);
             --border-light: rgba(255, 255, 255, 0.1);
+            --accent: #a78bfa;
         }
 
         body {
@@ -58,7 +59,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(9, 9, 11, 0.7);
+            background: rgba(9, 9, 11, 0.8);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-light);
             z-index: 100;
@@ -98,7 +99,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: #a78bfa;
+            background-color: var(--accent);
             transition: width 0.3s ease;
         }
 
@@ -124,17 +125,20 @@
             transform: translateY(-2px);
         }
 
-        /* Container Sections */
+        /* Container Sections (Đã nới lỏng khoảng cách để không bị dồn) */
         section {
+            padding: 150px 10% 80px;
+            position: relative;
+        }
+
+        /* Hero Section (Đảm bảo luôn vừa màn hình đầu tiên) */
+        #home {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 120px 10% 60px;
-            position: relative;
         }
 
-        /* Hero Section */
         .hero-container {
             display: flex;
             align-items: center;
@@ -155,7 +159,7 @@
             margin-bottom: 1.5rem;
             background: linear-gradient(
                 90deg, 
-                #a78bfa 0%, 
+                var(--accent) 0%, 
                 #fff 50%, 
                 #c084fc 100%
             );
@@ -175,7 +179,7 @@
             margin-bottom: 2rem;
             font-weight: 500;
             display: inline-block;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border: 1px solid rgba(167, 139, 250, 0.3);
             border-radius: 20px;
             background: rgba(167, 139, 250, 0.05);
@@ -184,8 +188,8 @@
         .hero-desc {
             color: var(--text-muted);
             line-height: 1.8;
-            font-size: 1.1rem;
-            max-width: 500px;
+            font-size: 1.15rem;
+            max-width: 550px;
         }
 
         /* Avatar Viền Tròn Tự Động Xoay */
@@ -244,7 +248,7 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-            color: #a78bfa;
+            color: var(--accent);
             font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 1px;
@@ -260,8 +264,8 @@
 
         /* Section Titles */
         .section-header {
-            font-size: 0.9rem;
-            color: #a78bfa;
+            font-size: 0.95rem;
+            color: var(--accent);
             font-weight: 700;
             letter-spacing: 2px;
             margin-bottom: 1rem;
@@ -280,9 +284,9 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem; /* Tăng khoảng trống dưới tiêu đề */
         }
 
         /* Content Grids */
@@ -294,16 +298,16 @@
 
         .text-block {
             color: var(--text-muted);
-            line-height: 1.8;
+            line-height: 1.9;
             font-size: 1.1rem;
         }
 
         .text-block p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
-        /* Khối Kỹ Năng */
-        .skill-box {
+        /* Khối Box dùng chung */
+        .info-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-light);
             padding: 2.5rem;
@@ -311,9 +315,12 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
-        .skill-box::before {
+        .info-box::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
@@ -323,21 +330,22 @@
             transition: 0.5s;
         }
 
-        .skill-box:hover::before {
+        .info-box:hover::before {
             left: 150%;
         }
 
-        .skill-box:hover {
+        .info-box:hover {
             border-color: rgba(167, 139, 250, 0.5);
             background: rgba(167, 139, 250, 0.05);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(167, 139, 250, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px rgba(167, 139, 250, 0.1);
         }
 
-        .skill-box h3 {
+        .info-box h3 {
             font-size: 1.4rem;
             color: #fff;
             margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
 
         .skill-list {
@@ -350,36 +358,38 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
+            line-height: 1.6;
         }
 
         .skill-list li::before {
             content: '✦';
-            color: #a78bfa;
+            color: var(--accent);
             font-size: 1.2rem;
             line-height: 1.2;
         }
 
+        /* Nút Liên Hệ Mạng Xã Hội */
         .social-pills {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2.5rem;
+            margin-top: 2.5rem;
             flex-wrap: wrap;
         }
 
         .social-pill {
-            padding: 0.6rem 1.6rem;
+            padding: 0.8rem 1.8rem;
             border: 1px solid var(--border-light);
             border-radius: 50px;
-            color: var(--text-muted);
+            color: #fff;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.03);
         }
 
         .social-pill:hover {
-            border-color: #a78bfa;
-            color: #fff;
+            border-color: var(--accent);
             background: rgba(167, 139, 250, 0.15);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(167, 139, 250, 0.1);
@@ -396,6 +406,7 @@
             .hero-name { font-size: 3rem; }
             .hero-desc { margin: 0 auto; }
             .social-pills { justify-content: center; }
+            section { padding: 100px 5% 50px; }
             .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
             .avatar-outer-ring { width: 320px; height: 320px; }
             .avatar-inner-ring { width: 280px; height: 280px; }
@@ -467,7 +478,7 @@
         <h2 class="section-title">Khả năng tích lũy</h2>
         
         <div class="grid-2">
-            <div class="skill-box">
+            <div class="info-box">
                 <h3>Định hướng QA/QC Tester</h3>
                 <ul class="skill-list">
                     <li>Tìm hiểu quy trình phát triển và kiểm thử phần mềm.</li>
@@ -477,11 +488,11 @@
                 </ul>
             </div>
             
-            <div class="skill-box">
+            <div class="info-box">
                 <h3>Nền tảng Kỹ thuật</h3>
                 <ul class="skill-list">
                     <li>Quản lý mã nguồn cơ bản với Git.</li>
-                    <li>Làm quen với các công cụ hệ thống và môi trường như Docker, WordPress.</li>
+                    <li>Làm quen với kiến trúc và môi trường triển khai Docker.</li>
                     <li>Nền tảng lập trình Python và tiếp cận các mô hình Machine Learning cơ bản.</li>
                     <li>Sử dụng các công cụ hỗ trợ công việc như Microsoft Project, Excel.</li>
                 </ul>
@@ -489,23 +500,23 @@
         </div>
     </section>
 
-    <section id="contact" style="min-height: 70vh;">
+    <section id="contact" style="padding-bottom: 120px;">
         <div class="section-header">03 — Liên hệ</div>
         <h2 class="section-title">Kết nối với mình</h2>
         
-        <div class="text-block" style="text-align: left; max-width: 630px;">
+        <div class="text-block" style="text-align: left; max-width: 650px;">
             <p>
-                Mình luôn hoan nghênh và trân trọng mọi cơ hội được kết nối. Dù bạn muốn trao đổi chia sẻ kinh nghiệm về công nghệ, tìm hiểu về kiểm thử, hay đơn giản là muốn giao lưu kết bạn và cùng chơi thể thao, đừng ngần ngại nhắn tin cho mình nhé!
+                Mình luôn hoan nghênh và trân trọng mọi cơ hội được kết nối. Dù bạn muốn trao đổi chia sẻ kinh nghiệm về công nghệ, tìm hiểu về quy trình kiểm thử, hay đơn giản là muốn giao lưu kết bạn và cùng chơi thể thao, đừng ngần ngại nhắn tin cho mình nhé!
             </p>
-            <div class="social-pills" style="margin-top: 2rem;">
-                <a href="mailto:linhnu0407@gmail.com" class="social-pill" style="font-size: 1rem;">
-                    linhnu0407@gmail.com
+            <div class="social-pills">
+                <a href="mailto:linhnu0407@gmail.com" class="social-pill">
+                    ✉️ linhnu0407@gmail.com
                 </a>
-                <a href="tel:+84968158259" class="social-pill" style="font-size: 1rem;">
-                    +84 968158259
+                <a href="tel:+84968158259" class="social-pill">
+                    📞 +84 968158259
                 </a>
-                <a href="https://github.com/yourusername" target="_blank" class="social-pill" style="font-size: 1rem;">
-                    GitHub
+                <a href="https://github.com/yourusername" target="_blank" class="social-pill">
+                    💻 GitHub
                 </a>
             </div>
         </div>
@@ -527,9 +538,12 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
