@@ -3,73 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mai Linh | Portfolio - QA/QC Tester</title>
+    <title>Mai Linh | QA/QC Tester Portfolio</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         :root {
-            --primary: #4776E6;
-            --secondary: #8E54E9;
-            --accent: #FF8008;
-            --text-light: #ffffff;
-            --text-dark: #1a202c;
-            --bg-light: #f7fafc;
-            --glass: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.25);
+            --bg-color: #050505;
+            --card-bg: #111111;
+            --card-border: #222222;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            color: var(--text-dark);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated Background - Tinh chỉnh lại màu sắc dịu mắt hơn */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #1e3c72, #2a5298, #4776E6, #8E54E9);
-            background-size: 400% 400%;
-            animation: gradientFlow 15s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles */
-        .particle {
-            position: fixed;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 8s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(-25px) rotate(180deg) scale(1.1); }
-        }
-
-        /* Glass morphism containers */
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        /* Gradient Text Utility */
+        .gradient-text {
+            background: linear-gradient(to right, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         /* Header */
@@ -77,398 +44,257 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.2rem 0;
-            z-index: 1000;
-            transition: all 0.4s ease;
-        }
-
-        .header-scrolled {
-            background: rgba(25, 30, 45, 0.8);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 100;
         }
 
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            color: var(--text-light);
+            color: var(--text-main);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: -1px;
         }
 
         .nav-links {
             display: flex;
+            gap: 2rem;
             list-style: none;
-            gap: 2.5rem;
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding-bottom: 5px;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--text-main);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 2rem 50px;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
-            padding: 0 2rem;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding: 4rem 0 3rem;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            color: var(--accent);
-        }
-
-        .hero .subtitle {
-            font-size: 1.6rem;
-            font-weight: 500;
+            letter-spacing: -2px;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: #e2e8f0;
-            animation: fadeIn 2s ease 0.5s both;
         }
 
-        .hero .description {
-            font-size: 1.15rem;
-            margin-bottom: 3rem;
-            color: rgba(255, 255, 255, 0.85);
-            animation: fadeIn 2s ease 1s both;
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 2.5rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeIn 2s ease 1.5s both;
-        }
-
-        .btn {
-            padding: 14px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .btn-contact {
             display: inline-block;
-            position: relative;
-            overflow: hidden;
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--accent), #ff9a3d);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 128, 8, 0.4);
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
         }
 
-        .btn-outline {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 4rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
+        /* Bento Grid Layout */
+        .bento-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(139, 92, 246, 0.5); /* Purple glow border */
+        }
+
+        /* Specific Cards spanning multiple columns */
+        .card-about {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: row;
             align-items: center;
+            gap: 2rem;
         }
 
-        .avatar-container {
+        .card-photo {
+            grid-column: span 1;
+            padding: 0;
+            overflow: hidden;
             position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
         }
 
-        .avatar-container::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            border: 2px dashed var(--glass-border);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-
-        .avatar {
+        .card-photo img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 5px solid rgba(255,255,255,0.2);
-            transition: transform 0.5s ease;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
         }
 
-        .avatar-container:hover .avatar {
-            transform: scale(1.05);
+        .card-photo:hover img {
+            filter: grayscale(0%);
         }
 
-        .about-text {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.15rem;
-            line-height: 1.9;
-            padding: 3rem !important;
-        }
+        .card-skill-1 { grid-column: span 1; }
+        .card-skill-2 { grid-column: span 2; }
+        .card-contact { grid-column: span 3; text-align: center; }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .skill-card {
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            color: var(--text-light);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-12px);
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .skill-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-        }
-
-        .skill-card h3 {
-            margin-bottom: 1.2rem;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .skill-card p {
-            opacity: 0.9;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            color: var(--text-light);
-            padding: 4rem !important;
-        }
-
-        .contact-text {
+        /* Card Content Styling */
+        .bento-card h3 {
             font-size: 1.25rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
+            font-weight: 600;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            font-size: 1.15rem;
-            background: rgba(255,255,255,0.1);
-            padding: 15px 25px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            gap: 0.5rem;
         }
 
-        .contact-item:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: var(--accent);
-            transform: translateY(-3px);
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        .contact-item a {
-            color: var(--text-light);
+        /* Tags for Skills */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ddd;
+        }
+
+        /* Social Links in Contact Card */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2.5rem;
-            color: rgba(255, 255, 255, 0.6);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            margin-top: 50px;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 900px) {
-            .about-content {
+        /* Responsive */
+        @media (max-width: 800px) {
+            .bento-grid {
                 grid-template-columns: 1fr;
+            }
+            .card-about, .card-photo, .card-skill-1, .card-skill-2, .card-contact {
+                grid-column: span 1;
+            }
+            .card-about {
+                flex-direction: column-reverse;
                 text-align: center;
-                gap: 3rem;
             }
-            .avatar-container {
-                width: 250px;
-                height: 250px;
+            .hero h1 {
+                font-size: 3rem;
             }
-            .about-text {
-                padding: 2rem !important;
+            .nav-links {
+                display: none;
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.3rem; }
-            .section-title { font-size: 2.2rem; }
-            .contact-info { flex-direction: column; align-items: center; }
-            .contact-item { width: 100%; justify-content: center; }
-        }
-
-        /* Scroll animations */
-        .fade-in {
+        /* Subtle entrance animation */
+        .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards ease-out;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation"></div>
 
-    <!-- Header -->
-    <header id="header">
+    <header>
         <nav>
-            <a href="#" class="logo">Mai Linh.</a>
+            <a href="#" class="logo">M.Linh</a>
             <ul class="nav-links">
-                <li><a href="#home">Trang chủ</a></li>
                 <li><a href="#about">Về tôi</a></li>
                 <li><a href="#skills">Kỹ năng</a></li>
                 <li><a href="#contact">Liên hệ</a></li>
@@ -476,155 +302,82 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Xin chào, mình là <span>Mai Linh</span></h1>
-            <p class="subtitle">Định hướng phát triển QA/QC Tester chuyên nghiệp</p>
-            <p class="description">
-                Sinh viên khối ngành Công nghệ Thông tin. Yêu thích sự logic, chú trọng tính chính xác và luôn sẵn sàng học hỏi để đảm bảo chất lượng hoàn hảo cho mọi hệ thống phần mềm.
-            </p>
-            <div class="cta-buttons">
-                <a href="#about" class="btn btn-primary">Khám phá ngay</a>
-                <a href="#contact" class="btn btn-outline">Liên hệ với mình</a>
-            </div>
-        </div>
-    </section>
+    <div class="container">
+        <section class="hero fade-up">
+            <h1>Xin chào, mình là <br><span class="gradient-text">Mai Linh.</span></h1>
+            <p>Sinh viên IT đam mê công nghệ, hướng tới mục tiêu trở thành một QA/QC Tester chuyên nghiệp, đảm bảo độ hoàn hảo cho từng dòng code.</p>
+            <a href="#contact" class="btn-contact">Kết nối với mình</a>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="fade-in">
-        <h2 class="section-title">Về tôi</h2>
-        <div class="about-content">
-            <div class="avatar-container">
-                <img src="mailin.jpg" alt="Hình đại diện của Mai Linh" class="avatar">
-            </div>
-            <div class="about-text glass">
-                <p>Mình là Mai Linh, sinh viên nữ ngành Công nghệ Thông tin với nền tảng vững chắc về <strong>Ứng dụng Mã nguồn mở</strong> và tư duy phân tích hệ thống. Trong quá trình học tập, mình đã có cơ hội làm việc sâu với các tập dữ liệu thực tế và các mô hình Học máy (Machine Learning).</p>
-                <p>Quá trình làm việc với dữ liệu lớn và thiết lập kiến trúc hệ thống đã rèn luyện cho mình sự tỉ mỉ, khả năng nhìn nhận vấn đề từ nhiều góc độ và tư duy logic sắc bén. Mình tin rằng đây là những tố chất cốt lõi để trở thành một <strong>Kiểm thử viên (Tester)</strong> xuất sắc.</p>
-                <p>Mục tiêu hiện tại của mình là tìm kiếm cơ hội thực tập tại vị trí QA/QC, qua đó chuyển hóa những kiến thức kỹ thuật thành giá trị thực tiễn, giúp ngăn chặn lỗi và tối ưu hóa trải nghiệm người dùng cho các sản phẩm phần mềm.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="fade-in">
-        <h2 class="section-title">Năng lực chuyên môn</h2>
-        <div class="skills-grid">
-            <div class="skill-card glass">
-                <span class="skill-icon">🎯</span>
-                <h3>Kiểm thử & Tư duy</h3>
-                <p>Khả năng phân tích yêu cầu hệ thống, chú trọng chi tiết. Hiểu biết về quy trình phát triển phần mềm, hướng tới việc viết Test case và kịch bản kiểm thử.</p>
-            </div>
-            <div class="skill-card glass">
-                <span class="skill-icon">⚙️</span>
-                <h3>Mã Nguồn Mở</h3>
-                <p>Có kinh nghiệm triển khai và cấu hình kiến trúc hệ thống. Sử dụng thành thạo Git, quản trị WordPress, và triển khai môi trường bằng Docker.</p>
-            </div>
-            <div class="skill-card glass">
-                <span class="skill-icon">📊</span>
-                <h3>Dữ liệu & Logic</h3>
-                <p>Tư duy phân tích dữ liệu tốt. Nắm vững ngôn ngữ Python, sử dụng Google Colab, Orange Data Mining và xử lý các mô hình Machine Learning.</p>
-            </div>
-            <div class="skill-card glass">
-                <span class="skill-icon">🛠️</span>
-                <h3>Công cụ Quản lý</h3>
-                <p>Kỹ năng làm việc nhóm tốt. Biết lập kế hoạch, theo dõi tiến độ dự án bằng Microsoft Project và xử lý số liệu chính xác với Excel.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="fade-in">
-        <h2 class="section-title">Liên hệ</h2>
-        <div class="contact-content glass" style="margin: 0 auto; max-width: 800px;">
-            <p class="contact-text">
-                Bạn đang tìm kiếm một ứng viên cẩn thận, có tư duy hệ thống và sẵn sàng bứt phá trong vai trò Tester? Hãy kết nối với mình nhé!
-            </p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📧</span>
-                    <a href="mailto:linhnu0407@gmail.com">linhnu0407@gmail.com</a>
+        <div class="bento-grid">
+            
+            <div id="about" class="bento-card card-about fade-up delay-1">
+                <div>
+                    <h3>👋 Về bản thân mình</h3>
+                    <p style="margin-bottom: 1rem;">
+                        Mình là Mai Linh, sinh viên ngành Công nghệ Thông tin. Mình có nền tảng tư duy hệ thống vững chắc từ việc nghiên cứu Ứng dụng Mã nguồn mở và xử lý dữ liệu với Machine Learning.
+                    </p>
+                    <p>
+                        Tính cách cẩn thận, yêu thích sự logic và khả năng nhìn nhận vấn đề từ nhiều góc độ là những thế mạnh giúp mình tự tin theo đuổi con đường Kiểm thử phần mềm (Software Testing). Mình đang tìm kiếm cơ hội thực tập để áp dụng kiến thức vào thực tế.
+                    </p>
                 </div>
-                <div class="contact-item">
-                    <span>📱</span>
-                    <a href="tel:+84968158259">+84 968158259</a>
+            </div>
+
+            <div class="bento-card card-photo fade-up delay-2">
+                <img src="mailin.jpg" alt="Mai Linh">
+            </div>
+
+            <div id="skills" class="bento-card card-skill-1 fade-up delay-3">
+                <h3>🎯 Định hướng QA/QC</h3>
+                <p>Nắm bắt quy trình phát triển phần mềm, tư duy viết Test case và kịch bản kiểm thử, chú trọng chi tiết và trải nghiệm người dùng.</p>
+                <div class="skill-tags">
+                    <span class="tag">Manual Testing</span>
+                    <span class="tag">Test Cases</span>
+                    <span class="tag">Logic Thinking</span>
                 </div>
-                <div class="contact-item">
-                    <span>🐙</span>
+            </div>
+
+            <div class="bento-card card-skill-2 fade-up delay-4">
+                <h3>💻 Nền tảng Kỹ thuật</h3>
+                <p>Khả năng phân tích hệ thống và xử lý dữ liệu mạnh mẽ, là bước đệm hoàn hảo để tiến tới Automation Test trong tương lai.</p>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">WordPress</span>
+                    <span class="tag">Machine Learning Models</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">MS Project</span>
+                </div>
+            </div>
+
+            <div id="contact" class="bento-card card-contact fade-up delay-1">
+                <h3>Sẵn sàng cho những thử thách mới!</h3>
+                <p>Bạn đang tìm kiếm một Thực tập sinh Kiểm thử năng động và ham học hỏi? Hãy gửi email cho mình nhé.</p>
+                <div class="social-links">
+                    <a href="mailto:linhnu0407@gmail.com">Email</a>
+                    <a href="tel:+84968158259">Phone</a>
                     <a href="https://github.com/yourusername" target="_blank">GitHub</a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Mai Linh. Tối ưu cho định hướng QA/QC Tester.</p>
+        <p>&copy; 2026 Mai Linh. Designed with passion.</p>
     </footer>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            for (let i = 0; i < 25; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 12 + 4 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                document.body.appendChild(particle);
-            }
-        }
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 80) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        });
-
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
-
-        // Fade in animation on scroll using Intersection Observer
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Optional: Stop observing once visible if you only want it to animate once
-                    // observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Initialize particles on load
-        window.addEventListener('load', createParticles);
     </script>
 </body>
 </html>
